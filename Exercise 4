@@ -1,0 +1,12 @@
+DECLARE
+  v_salary o_emp.SAL%TYPE;
+  v_num_emp NUMBER(9,3);
+  v_job_title o_emp.JOB%TYPE:='&job_description';
+BEGIN
+  SELECT SUM(SAL), COUNT(EMPNO)
+  INTO  v_salary, v_num_emp
+  FROM o_emp
+  WHERE  JOB = UPPER(v_job_title);
+  DBMS_OUTPUT.PUT_LINE('The job code '|| v_job_title || ' has '|| v_num_emp || ' employees with total salary of '||TRIM(TO_CHAR(v_salary,'L9999.00')));
+  END;
+/ 
